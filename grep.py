@@ -42,7 +42,7 @@ class Validator:
         mimetype, _ = mimetypes.guess_type(self.filepath)
         if mimetype is None or mimetype != FILE_MIMETYPE:
             msg = f'{self.filepath} has wrong mimetype {mimetype}. '\
-                'File must be a {FILE_MIMETYPE} type.'
+                f'File must be a {FILE_MIMETYPE} type.'
             raise ValidationError(msg)
 
 
@@ -91,7 +91,8 @@ def main():
     parser = argparse.ArgumentParser(description='Grep utility on Python')
     parser.add_argument('text', help='Text to find in file. Can be a regex.')
     parser.add_argument('filepath', help='Path to file')
-    parser.add_argument('-v', action='store_true')
+    parser.add_argument('-v', action='store_true',
+                        help='Print lines which do not contain a text')
     args = parser.parse_args()
 
     text = args.text
